@@ -2,6 +2,7 @@
 
 - **Author**: Mason Aviles and Audrey Patterson
 - **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+- [Trello Board for lab 12](https://trello.com/b/aLxB76Dp/best-books-lab-12)
 
 ## Overview
 
