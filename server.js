@@ -74,12 +74,12 @@ app.get('/books', handleGetBooks);
 async function handleGetBooks(request, response) {
   // matches param call from front end
   const email = request.query.email;
-  console.log({email});
+  console.log('email from front', email);
   await User.find({email: email}, function (err, items) {
     if (err) return console.error(err);
     console.log(items, items[0])
-    response.status(200).send(items[0].books);
-    console.log('items books', items[0].books);
+    response.status(200).send(items);
+    console.log('items books', items);
   })
 }
 
