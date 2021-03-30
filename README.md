@@ -21,8 +21,8 @@ Back-end application using Express and MongoDB for our Front-End application "Be
 - Name of feature: Lab 12 - Setup back-end repository
   - Estimate of time needed to complete: 30 minutes
   - Start time: 1:10 pm
-  - Finish time:
-  - Actual time needed to complete: 61 minutes
+  - Finish time: 1:34 pm
+  - Actual time needed to complete: 24 minutes
 
 - Name of feature: Lab 12 - Storage
   - Estimate of time needed to complete:
