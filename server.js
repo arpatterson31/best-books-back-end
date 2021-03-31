@@ -21,6 +21,9 @@ db.once('open', function() {
 
 app.use(cors());
 
+// train robber
+app.use(express.json());
+
 // seed stuff
 const mace = new User({
   email: 'mce.aviles@gmail.com',
@@ -70,6 +73,7 @@ console.log('audrey books', audrey.books);
 // routes and functions for /books
 // ======================================================
 app.get('/books', handleGetBooks);
+app.post('/books', createNewBook);
 
 async function handleGetBooks(request, response) {
   // matches param call from front end
@@ -83,6 +87,19 @@ async function handleGetBooks(request, response) {
   })
 }
 
+function createNewBook(request, response) {
+  // console.log('inside of createNewBook w/ request.body', request.body);
+  const email = request.body.email;
+  const book = { name: request.body.name, description: request.body.description, status: request.body.status }
+
+  User.findOne( { email }, (err, entry) => {
+    if(err) return console.error(err);
+    entry.books.push(book);
+    entry.save();
+
+    response.status(200).send(entry.books);
+  })
+}
 // ======================================================
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
