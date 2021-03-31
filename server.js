@@ -27,17 +27,17 @@ const mace = new User({
   books: [
     {
       name: 'Lucy',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     },
     {
       name: 'Lucy 2',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     },
     {
       name: 'Lucy 3',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     }
   ]
@@ -49,17 +49,17 @@ const audrey = new User({
   books: [
     {
       name: 'Lucy',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     },
     {
       name: 'Lucy 2',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     },
     {
       name: 'Lucy 3',
-      desription: 'a lovely book',
+      description: 'a lovely book',
       status: '#1 Book'
     }
   ]
@@ -78,7 +78,7 @@ async function handleGetBooks(request, response) {
   await User.find({email: email}, function (err, items) {
     if (err) return console.error(err);
     console.log(items, items[0])
-    response.status(200).send(items);
+    response.status(200).send(items[0]);
     console.log('items books', items);
   })
 }
