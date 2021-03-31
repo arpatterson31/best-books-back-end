@@ -78,7 +78,7 @@ async function handleGetBooks(request, response) {
   await User.find({email: email}, function (err, items) {
     if (err) return console.error(err);
     console.log(items, items[0])
-    response.status(200).send(items[0]);
+    response.status(200).send(items[items.length-1]);
     console.log('items books', items);
   })
 }
