@@ -75,6 +75,7 @@ app.use(express.json());
 app.get('/books', handleGetBooks);
 app.post('/books', createNewBook);
 app.delete('/books/:index', deleteABook);
+app.put('/books/:index', updateABook);
 
 async function handleGetBooks(request, response) {
   // matches param call from front end
@@ -120,6 +121,36 @@ function deleteABook(request, response) {
   })
 
 }
+
+// Cats.updateCat = async (request, response) => {
+//   const index = request.params.index;
+//   const catName = request.body.catName;
+//   const personName = request.body.name;
+
+
+//   // console.log({index, catName, personName})
+//   // { index: '1', catName: 'sam', personName: 'Brian' }
+//   await User.findOne({name:personName}, (err, user) => {
+//     const cat = { name: catName }
+//     user.cats.splice(parseInt(index), 1, cat);
+//     user.save();
+//     response.status(200).send(user.cats);
+//   })
+// }
+function updateABook(request, response) {
+  const index = request.params.index;
+  const email = request.body.email;
+  const bookStatus = request.body.bookStatus;
+  console.log({index, email, bookStatus})
+
+  User.findOne({ email }, (err, entry) => {
+    const newStatus = { status: bookStatus }
+    entry.books.splice(parseInt(index), 1, newStatus);
+    entry.save();
+    response.status(200).send(entry.books);
+  })
+}
+
 // ======================================================
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
