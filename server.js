@@ -91,12 +91,13 @@ function createNewBook(request, response) {
   // console.log('inside of createNewBook w/ request.body', request.body);
   const email = request.body.email;
   const book = { name: request.body.name, description: request.body.description, status: request.body.status }
+  // console.log('book after body', book);
 
   User.findOne( { email }, (err, entry) => {
     if(err) return console.error(err);
     entry.books.push(book);
     entry.save();
-
+    console.log('new push', entry.books);
     response.status(200).send(entry.books);
   })
 }
