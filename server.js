@@ -25,50 +25,50 @@ app.use(cors());
 app.use(express.json());
 
 // seed stuff
-const mace = new User({
-  email: 'mce.aviles@gmail.com',
-  books: [
-    {
-      name: 'Lucy',
-      description: 'a lovely book',
-      status: '#1 Book'
-    },
-    {
-      name: 'Lucy 2',
-      description: 'a lovely book',
-      status: '#1 Book'
-    },
-    {
-      name: 'Lucy 3',
-      description: 'a lovely book',
-      status: '#1 Book'
-    }
-  ]
-});
-mace.save();
+// const mace = new User({
+//   email: 'mce.aviles@gmail.com',
+//   books: [
+//     {
+//       name: 'Lucy',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     },
+//     {
+//       name: 'Lucy 2',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     },
+//     {
+//       name: 'Lucy 3',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     }
+//   ]
+// });
+// mace.save();
 
-const audrey = new User({
-  email: 'audrey.patterson31@gmail.com',
-  books: [
-    {
-      name: 'Lucy',
-      description: 'a lovely book',
-      status: '#1 Book'
-    },
-    {
-      name: 'Lucy 2',
-      description: 'a lovely book',
-      status: '#1 Book'
-    },
-    {
-      name: 'Lucy 3',
-      description: 'a lovely book',
-      status: '#1 Book'
-    }
-  ]
-});
-audrey.save();
-console.log('audrey books', audrey.books);
+// const audrey = new User({
+//   email: 'audrey.patterson31@gmail.com',
+//   books: [
+//     {
+//       name: 'Lucy',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     },
+//     {
+//       name: 'Lucy 2',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     },
+//     {
+//       name: 'Lucy 3',
+//       description: 'a lovely book',
+//       status: '#1 Book'
+//     }
+//   ]
+// });
+// audrey.save();
+// console.log('audrey books', audrey.books);
 
 // routes and functions for /books
 // ======================================================
