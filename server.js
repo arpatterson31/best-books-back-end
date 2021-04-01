@@ -104,7 +104,7 @@ function createNewBook(request, response) {
 }
 
 function deleteABook(request, response) {
-  const index = request.params.index;
+  const index = parseInt(request.params.index);
   // const userName = request.query.name;
   const email = request.query.email;
   // { index: '5', userName: 'Brian' }
