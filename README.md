@@ -41,10 +41,10 @@ Back-end application using Express and MongoDB for our Front-End application "Be
   - Actual time needed to complete: 4 hours
 
 - Name of feature: Lab 13: Delete - Front end and back end
-  - Estimate of time needed to complete: 
-  - Start time: 
-  - Finish time: 
-  - Actual time needed to complete: 
+  - Estimate of time needed to complete: 2 hr
+  - Start time: 5:00pm 
+  - Finish time: 6:09 pm
+  - Actual time needed to complete: 1hr
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
