@@ -74,6 +74,7 @@ console.log('audrey books', audrey.books);
 // ======================================================
 app.get('/books', handleGetBooks);
 app.post('/books', createNewBook);
+app.delete('/books/:index', deleteABook);
 
 async function handleGetBooks(request, response) {
   // matches param call from front end
@@ -100,6 +101,24 @@ function createNewBook(request, response) {
     console.log('new push', entry.books);
     response.status(200).send(entry.books);
   })
+}
+
+function deleteABook(request, response) {
+  const index = request.params.index;
+  // const userName = request.query.name;
+  const email = request.query.email;
+  // { index: '5', userName: 'Brian' }
+  
+  User.findOne({ email }, (err, entry) => {
+    const newBookArray = entry.books.filter((book, i) => {
+      return i !== index;
+    });
+    entry.books = newBookArray;
+    console.log({newBookArray});
+    entry.save();
+    response.status(200).send('success!')
+  })
+
 }
 // ======================================================
 
