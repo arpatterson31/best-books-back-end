@@ -11,11 +11,11 @@ const DATABASE = process.env.DATABASE_URL;
 const mongoose = require('mongoose');
 const User = require('./models/User');
 
-mongoose.connect(`${DATABASE}`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`${DATABASE}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('connected to the database!');
 });
 
@@ -75,32 +75,33 @@ app.use(express.json());
 app.get('/books', handleGetBooks);
 app.post('/books', createNewBook);
 app.delete('/books/:index', deleteABook);
+app.put('/books/:index', updateABook);
 
-async function handleGetBooks(request, response) {
+function handleGetBooks(request, response) {
   // matches param call from front end
   const email = request.query.email;
   console.log('email from front', email);
-  await User.find({email: email}, function (err, items) {
+  User.find({ email: email }, function (err, items) {
     if (err) return console.error(err);
-    console.log(items, items[0])
-    response.status(200).send(items[items.length-1]);
+    // console.log(items, items[0])
+    response.status(200).send(items[0]);
     console.log('items books', items);
-  })
+  });
 }
 
 function createNewBook(request, response) {
   // console.log('inside of createNewBook w/ request.body', request.body);
   const email = request.body.email;
-  const book = { name: request.body.name, description: request.body.description, status: request.body.status }
+  const book = { name: request.body.name, description: request.body.description, status: request.body.status };
   // console.log('book after body', book);
 
-  User.findOne( { email }, (err, entry) => {
-    if(err) return console.error(err);
+  User.findOne({ email }, (err, entry) => {
+    if (err) return console.error(err);
     entry.books.push(book);
     entry.save();
-    console.log('new push', entry.books);
+    // console.log('new push', entry.books);
     response.status(200).send(entry.books);
-  })
+  });
 }
 
 function deleteABook(request, response) {
@@ -108,18 +109,34 @@ function deleteABook(request, response) {
   // const userName = request.query.name;
   const email = request.query.email;
   // { index: '5', userName: 'Brian' }
-  
+
   User.findOne({ email }, (err, entry) => {
     const newBookArray = entry.books.filter((book, i) => {
       return i !== index;
     });
     entry.books = newBookArray;
-    console.log({newBookArray});
+    // console.log({newBookArray});
     entry.save();
-    response.status(200).send('success!')
-  })
+    response.status(200).send('success!');
+  });
 
 }
+
+function updateABook(request, response) {
+  const index = request.params.index;
+  const email = request.body.email;
+
+  const book = request.body.book;
+  console.log('update book body stuff', index, email, book);
+
+  User.findOne({ email }, (err, entry) => {
+    entry.books.splice(parseInt(index), 1, book);
+    entry.save();
+    console.log('updated book', entry.books);
+    response.status(200).send(entry.books);
+  });
+}
+
 // ======================================================
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
